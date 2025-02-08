@@ -4,24 +4,37 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 var direction: float
+var is_on_ground: bool
+var is_jumping: bool
 
+@onready var coyote_time: Timer = $coyote_time
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	is_on_ground = is_on_floor()
+	var was_on_floor = is_on_floor()
 	
-	player_control()
+	apply_gravity(delta)
+	jump_handler()
+	move_handler()
 	flip_handler()
 	animation_handler()
 	
+	if was_on_floor and not is_on_floor():
+		coyote_time.start()
 	move_and_slide()
 
-func player_control():
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+func apply_gravity(delta: float):
+	if not is_on_ground:
+		velocity += get_gravity() * delta
+	
+func jump_handler():
+	if Input.is_action_just_pressed("jump") and not coyote_time.is_stopped():
 		velocity.y = JUMP_VELOCITY
+		is_jumping = true
 
+func move_handler():
 	direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED

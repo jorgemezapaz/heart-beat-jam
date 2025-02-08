@@ -112,3 +112,7 @@ shape = SubResource("CapsuleShape2D_2bj8s")
 libraries = {
 "": SubResource("AnimationLibrary_d6xka")
 }
+
+[node name="coyote_time" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

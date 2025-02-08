@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://4cgw6mtrv6uu"]
+
+[ext_resource type="Script" path="res://scripts/dead_zone.gd" id="1_fmlmf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yex81"]
+size = Vector2(2583, 94)
+
+[node name="dead_zone" type="Node2D"]
+script = ExtResource("1_fmlmf")
+
+[node name="StaticBody2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-4.5, 37)
+shape = SubResource("RectangleShape2D_yex81")
+
+[connection signal="body_entered" from="StaticBody2D" to="." method="_on_static_body_2d_body_entered"]
