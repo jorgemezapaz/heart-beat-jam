@@ -4,35 +4,40 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 var direction: float
-var is_on_ground: bool
 var is_jumping: bool
+# coyote time
+var was_on_floor: bool = false
+var can_coyote_jump: bool = false
 
 @onready var coyote_time: Timer = $coyote_time
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 
 func _physics_process(delta: float) -> void:
-	is_on_ground = is_on_floor()
-	var was_on_floor = is_on_floor()
-	
+	var was_on_floor_this_frame = is_on_floor()
+
+	if not is_on_floor() and was_on_floor and velocity.y >= 0:
+		print("coyote")
+		can_coyote_jump = true
+		coyote_time.start()
+		
 	apply_gravity(delta)
 	jump_handler()
 	move_handler()
 	flip_handler()
 	animation_handler()
-	
-	if was_on_floor and not is_on_floor():
-		coyote_time.start()
+
 	move_and_slide()
+	was_on_floor = was_on_floor_this_frame
 
 func apply_gravity(delta: float):
-	if not is_on_ground:
+	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
 func jump_handler():
-	if Input.is_action_just_pressed("jump") and not coyote_time.is_stopped():
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or can_coyote_jump):
 		velocity.y = JUMP_VELOCITY
-		is_jumping = true
+		can_coyote_jump = false
 
 func move_handler():
 	direction = Input.get_axis("left", "right")
@@ -56,3 +61,8 @@ func animation_handler():
 		animation_player.play("jump")
 	elif velocity.y > 0:
 		animation_player.play("fall")
+
+func _on_coyote_time_timeout() -> void:
+	can_coyote_jump = false
+	print("stop")
+	pass
