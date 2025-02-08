@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh2gr8r8b2htq"]
+
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_limfx"]
+[ext_resource type="PackedScene" uid="uid://b3dlcpa8j0itp" path="res://scenes/health_bar.tscn" id="2_mpgvf"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_limfx")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_right = 1153.0
+offset_bottom = 642.0
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+offset_left = 15.0
+offset_top = 14.0
+offset_right = 55.0
+offset_bottom = 37.0
+text = "Vida"
+
+[node name="health_bar" parent="NinePatchRect" instance=ExtResource("2_mpgvf")]
+position = Vector2(77, 27)

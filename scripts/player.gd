@@ -1,10 +1,9 @@
 extends CharacterBody2D
 
-
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 var direction: float
-var is_jumping: bool
+
 # coyote time
 var was_on_floor: bool = false
 var can_coyote_jump: bool = false
@@ -15,20 +14,21 @@ var can_coyote_jump: bool = false
 
 func _physics_process(delta: float) -> void:
 	var was_on_floor_this_frame = is_on_floor()
-
-	if not is_on_floor() and was_on_floor and velocity.y >= 0:
-		print("coyote")
-		can_coyote_jump = true
-		coyote_time.start()
 		
 	apply_gravity(delta)
 	jump_handler()
 	move_handler()
 	flip_handler()
 	animation_handler()
+	coyote_time_handler()
 
 	move_and_slide()
 	was_on_floor = was_on_floor_this_frame
+
+func coyote_time_handler():
+	if not is_on_floor() and was_on_floor and velocity.y >= 0:
+		can_coyote_jump = true
+		coyote_time.start()
 
 func apply_gravity(delta: float):
 	if not is_on_floor():
@@ -64,5 +64,3 @@ func animation_handler():
 
 func _on_coyote_time_timeout() -> void:
 	can_coyote_jump = false
-	print("stop")
-	pass

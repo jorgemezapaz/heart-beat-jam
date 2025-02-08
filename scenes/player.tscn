@@ -98,6 +98,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 3
 script = ExtResource("1_i41n1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -112,6 +113,7 @@ shape = SubResource("CapsuleShape2D_2bj8s")
 libraries = {
 "": SubResource("AnimationLibrary_d6xka")
 }
+autoplay = "idle"
 
 [node name="coyote_time" type="Timer" parent="."]
 wait_time = 0.2

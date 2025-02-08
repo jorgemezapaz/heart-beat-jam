@@ -1,29 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://pxj5k2y5s2o4"]
+[gd_scene load_steps=7 format=3 uid="uid://pxj5k2y5s2o4"]
 
 [ext_resource type="Texture2D" uid="uid://mjubl0ej4w1y" path="res://icon.svg" id="1_4x7e1"]
 [ext_resource type="PackedScene" uid="uid://da3hipm02p4hy" path="res://scenes/player.tscn" id="1_s3w7y"]
 [ext_resource type="PackedScene" uid="uid://4cgw6mtrv6uu" path="res://scenes/dead_zone.tscn" id="3_jtcud"]
+[ext_resource type="PackedScene" uid="uid://cybvjm523bk7b" path="res://scenes/syringe.tscn" id="4_kmm0u"]
+[ext_resource type="PackedScene" uid="uid://bh2gr8r8b2htq" path="res://scenes/UI.tscn" id="5_rq4tr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imofd"]
 size = Vector2(102, 37)
 
 [node name="level_1" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_s3w7y")]
-position = Vector2(543, 395)
+[node name="syringe" parent="." instance=ExtResource("4_kmm0u")]
+position = Vector2(128, 78)
+scale = Vector2(0.7, 0.7)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(543, 390)
-zoom = Vector2(2, 2)
+[node name="Player" parent="." instance=ExtResource("1_s3w7y")]
+position = Vector2(222, 210)
 
 [node name="dead_zone" parent="." node_paths=PackedStringArray("spot") instance=ExtResource("3_jtcud")]
-position = Vector2(545, 562)
-spot = NodePath("../Node2D")
+position = Vector2(224, 377)
+spot = NodePath("../spot")
 
 [node name="platforms" type="Node2D" parent="."]
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="platforms"]
-position = Vector2(804, 382)
+position = Vector2(483, 197)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D3"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -33,7 +35,7 @@ scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="platforms"]
-position = Vector2(546, 450)
+position = Vector2(225, 265)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D6"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -43,7 +45,7 @@ scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="platforms"]
-position = Vector2(648, 450)
+position = Vector2(327, 265)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D7"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -53,7 +55,7 @@ scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="platforms"]
-position = Vector2(444, 450)
+position = Vector2(123, 265)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D8"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -63,7 +65,7 @@ scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="platforms"]
-position = Vector2(675, 301)
+position = Vector2(354, 116)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D4"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -73,7 +75,7 @@ scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="platforms"]
-position = Vector2(474, 301)
+position = Vector2(153, 116)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D5"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -82,5 +84,11 @@ shape = SubResource("RectangleShape2D_imofd")
 scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(526, 380)
+[node name="spot" type="Node2D" parent="."]
+position = Vector2(205, 195)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(288, 162)
+zoom = Vector2(3, 3)
+
+[node name="CanvasLayer" parent="Camera2D" instance=ExtResource("5_rq4tr")]

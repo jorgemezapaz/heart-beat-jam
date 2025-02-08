@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3dlcpa8j0itp"]
+
+[ext_resource type="Texture2D" uid="uid://n6fn0csi4tdo" path="res://assets/healt_bar.png" id="1_6w6wp"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="1_uwu66"]
+
+[node name="health_bar" type="Node2D"]
+script = ExtResource("1_uwu66")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6w6wp")
+hframes = 9
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
