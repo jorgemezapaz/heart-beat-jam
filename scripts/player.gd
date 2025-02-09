@@ -11,6 +11,10 @@ var can_coyote_jump: bool = false
 @onready var coyote_time: Timer = $coyote_time
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var health_particle: GPUParticles2D = $GPUParticles2D
+
+func _ready() -> void:
+	GlobalSignal.syringe_catch_it.connect(show_health_particle)
 
 func _physics_process(delta: float) -> void:
 	var was_on_floor_this_frame = is_on_floor()
@@ -64,3 +68,8 @@ func animation_handler():
 
 func _on_coyote_time_timeout() -> void:
 	can_coyote_jump = false
+
+func show_health_particle():
+	health_particle.emitting = true
+	await get_tree().create_timer(1).timeout
+	health_particle.emitting = false

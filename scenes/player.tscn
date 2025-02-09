@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://da3hipm02p4hy"]
+[gd_scene load_steps=14 format=3 uid="uid://da3hipm02p4hy"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_i41n1"]
 [ext_resource type="Texture2D" uid="uid://cr0tvp1e45ced" path="res://assets/main_character.png" id="1_wpdnk"]
+[ext_resource type="Texture2D" uid="uid://cjiwr1180odvx" path="res://assets/health_particle.png" id="3_ekutq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2bj8s"]
 radius = 7.0
@@ -97,6 +98,22 @@ _data = {
 "walk": SubResource("Animation_41uqw")
 }
 
+[sub_resource type="Curve" id="Curve_ruwvm"]
+_data = [Vector2(0.00268096, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.00310874), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6ijgp"]
+curve = SubResource("Curve_ruwvm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_520f7"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 10.6
+gravity = Vector3(0, -98, 0)
+scale_min = 0.1
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_6ijgp")
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
@@ -119,5 +136,10 @@ autoplay = "idle"
 [node name="coyote_time" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_520f7")
+texture = ExtResource("3_ekutq")
 
 [connection signal="timeout" from="coyote_time" to="." method="_on_coyote_time_timeout"]

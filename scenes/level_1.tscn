@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://pxj5k2y5s2o4"]
+[gd_scene load_steps=9 format=3 uid="uid://pxj5k2y5s2o4"]
 
 [ext_resource type="Texture2D" uid="uid://mjubl0ej4w1y" path="res://icon.svg" id="1_4x7e1"]
 [ext_resource type="PackedScene" uid="uid://da3hipm02p4hy" path="res://scenes/player.tscn" id="1_s3w7y"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cybvjm523bk7b" path="res://scenes/syringe.tscn" id="4_kmm0u"]
 [ext_resource type="PackedScene" uid="uid://dp5mkl8owojxg" path="res://scenes/love_letter.tscn" id="5_ai2bw"]
 [ext_resource type="PackedScene" uid="uid://bh2gr8r8b2htq" path="res://scenes/UI.tscn" id="5_rq4tr"]
+[ext_resource type="PackedScene" uid="uid://b5kw3oqyq4kls" path="res://scenes/transition.tscn" id="7_xm06x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imofd"]
 size = Vector2(102, 37)
@@ -107,3 +108,5 @@ zoom = Vector2(2, 2)
 [node name="love_letter" parent="." instance=ExtResource("5_ai2bw")]
 position = Vector2(122, 77)
 scale = Vector2(0.8, 0.8)
+
+[node name="transition" parent="." instance=ExtResource("7_xm06x")]
