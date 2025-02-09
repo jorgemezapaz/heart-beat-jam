@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://pxj5k2y5s2o4"]
+[gd_scene load_steps=8 format=3 uid="uid://pxj5k2y5s2o4"]
 
 [ext_resource type="Texture2D" uid="uid://mjubl0ej4w1y" path="res://icon.svg" id="1_4x7e1"]
 [ext_resource type="PackedScene" uid="uid://da3hipm02p4hy" path="res://scenes/player.tscn" id="1_s3w7y"]
 [ext_resource type="PackedScene" uid="uid://4cgw6mtrv6uu" path="res://scenes/dead_zone.tscn" id="3_jtcud"]
 [ext_resource type="PackedScene" uid="uid://cybvjm523bk7b" path="res://scenes/syringe.tscn" id="4_kmm0u"]
+[ext_resource type="PackedScene" uid="uid://dp5mkl8owojxg" path="res://scenes/love_letter.tscn" id="5_ai2bw"]
 [ext_resource type="PackedScene" uid="uid://bh2gr8r8b2htq" path="res://scenes/UI.tscn" id="5_rq4tr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imofd"]
@@ -12,7 +13,7 @@ size = Vector2(102, 37)
 [node name="level_1" type="Node2D"]
 
 [node name="syringe" parent="." instance=ExtResource("4_kmm0u")]
-position = Vector2(128, 78)
+position = Vector2(556, 131)
 scale = Vector2(0.7, 0.7)
 
 [node name="Player" parent="." instance=ExtResource("1_s3w7y")]
@@ -25,7 +26,7 @@ spot = NodePath("../spot")
 [node name="platforms" type="Node2D" parent="."]
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="platforms"]
-position = Vector2(483, 197)
+position = Vector2(415, 248)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D3"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -35,7 +36,7 @@ scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="platforms"]
-position = Vector2(225, 265)
+position = Vector2(158, 303)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D6"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -45,7 +46,7 @@ scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="platforms"]
-position = Vector2(327, 265)
+position = Vector2(260, 303)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D7"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -55,7 +56,7 @@ scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="platforms"]
-position = Vector2(123, 265)
+position = Vector2(56, 303)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D8"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -65,7 +66,7 @@ scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="platforms"]
-position = Vector2(354, 116)
+position = Vector2(522, 163)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D4"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -75,7 +76,7 @@ scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="platforms"]
-position = Vector2(153, 116)
+position = Vector2(340, 118)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D5"]
 shape = SubResource("RectangleShape2D_imofd")
@@ -84,11 +85,25 @@ shape = SubResource("RectangleShape2D_imofd")
 scale = Vector2(0.859375, 0.289063)
 texture = ExtResource("1_4x7e1")
 
+[node name="StaticBody2D9" type="StaticBody2D" parent="platforms"]
+position = Vector2(124, 114)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D9"]
+shape = SubResource("RectangleShape2D_imofd")
+
+[node name="Sprite2D" type="Sprite2D" parent="platforms/StaticBody2D9"]
+scale = Vector2(0.859375, 0.289063)
+texture = ExtResource("1_4x7e1")
+
 [node name="spot" type="Node2D" parent="."]
 position = Vector2(205, 195)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(288, 162)
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="CanvasLayer" parent="Camera2D" instance=ExtResource("5_rq4tr")]
+
+[node name="love_letter" parent="." instance=ExtResource("5_ai2bw")]
+position = Vector2(122, 77)
+scale = Vector2(0.8, 0.8)

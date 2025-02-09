@@ -1,32 +1,36 @@
 extends Node2D
 
 const DEAD: int = 0
-const MAX_HEALTH: int = 9
+const MAX_HEALTH: int = 8
+var health_decrement_timer: float = 0.0 
+var healh_timer: float = 0
 
 @export var current_health: int = MAX_HEALTH
 @export var time: float = 3.0
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var health_timer: Timer = $Timer
 
 func _ready() -> void:
-	health_timer.wait_time = time
-	health_timer.start()
 	GlobalSignal.syringe_catch_it.connect(full_health)
-
-func _process(delta: float) -> void:
-	sprite_2d.frame = current_health
+	
+func _physics_process(delta: float) -> void:
+	#"sprite_2d.frame = current_health
 	if current_health == DEAD:
 		GlobalSignal.player_dead.emit()
+	
+	sprite_2d.set_deferred("frame", current_health)
+	
+	if current_health > DEAD:
+		healh_timer += delta
+	
+	if healh_timer >= time:
+		print("una barra menos")
+		current_health -= 1
+		healh_timer = 0.0
+	
 
 func full_health():
-	current_health = 9
-	health_timer.stop()
-	health_timer.start()
-
-func _on_timer_timeout() -> void:
-	if current_health == DEAD:
-		GlobalSignal.player_dead.emit()
-	else:
-		current_health-=1
-		health_timer.start()
+	print("epa")
+	current_health = MAX_HEALTH
+	healh_timer = 0.0
+	sprite_2d.set_deferred("frame", current_health)

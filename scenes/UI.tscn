@@ -10,13 +10,7 @@ script = ExtResource("1_limfx")
 offset_right = 1153.0
 offset_bottom = 642.0
 
-[node name="Label" type="Label" parent="NinePatchRect"]
-layout_mode = 1
-offset_left = 15.0
-offset_top = 14.0
-offset_right = 55.0
-offset_bottom = 37.0
-text = "Vida"
-
 [node name="health_bar" parent="NinePatchRect" instance=ExtResource("2_mpgvf")]
-position = Vector2(77, 27)
+position = Vector2(165, 35)
+scale = Vector2(5, 5)
+time = 1.0

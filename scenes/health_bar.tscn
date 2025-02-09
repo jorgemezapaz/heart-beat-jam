@@ -9,7 +9,4 @@ script = ExtResource("1_uwu66")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6w6wp")
 hframes = 9
-
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+frame = 8
