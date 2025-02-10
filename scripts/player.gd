@@ -13,22 +13,30 @@ var can_coyote_jump: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var health_particle: GPUParticles2D = $GPUParticles2D
 
+@export var controll_disabled: bool = true
+
 func _ready() -> void:
 	GlobalSignal.syringe_catch_it.connect(show_health_particle)
+	GlobalSignal.start_new_game.connect(new_game)
+	GlobalSignal.start_game.connect(new_game)
 
 func _physics_process(delta: float) -> void:
 	var was_on_floor_this_frame = is_on_floor()
-		
-	apply_gravity(delta)
-	jump_handler()
-	move_handler()
-	flip_handler()
-	animation_handler()
-	coyote_time_handler()
+	
+	if !controll_disabled:
+		apply_gravity(delta)
+		jump_handler()
+		move_handler()
+		flip_handler()
+		animation_handler()
+		coyote_time_handler()
 
 	move_and_slide()
 	was_on_floor = was_on_floor_this_frame
 
+func new_game():
+	controll_disabled = false
+	
 func coyote_time_handler():
 	if not is_on_floor() and was_on_floor and velocity.y >= 0:
 		can_coyote_jump = true
