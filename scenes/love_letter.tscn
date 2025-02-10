@@ -7,23 +7,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_vmv8n"]
 radius = 30.2655
 
-[sub_resource type="Animation" id="Animation_a07ij"]
-resource_name = "idle"
-length = 1.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-5, -2), Vector2(0, 0), Vector2(6, -2), Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_x7ior"]
 length = 0.001
 tracks/0/type = "value"
@@ -37,6 +20,47 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.200713]
+}
+
+[sub_resource type="Animation" id="Animation_a07ij"]
+resource_name = "idle"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.200713, 0.200713, -0.200713, 0.200713, -0.200713, 0.200713, 0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_odedr"]
@@ -65,6 +89,7 @@ scale_curve = SubResource("CurveTexture_f2v5q")
 script = ExtResource("1_u5a1d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -0.200713
 texture = ExtResource("1_3f1at")
 
 [node name="Area2D" type="Area2D" parent="."]

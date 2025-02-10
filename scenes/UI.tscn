@@ -13,4 +13,4 @@ offset_bottom = 642.0
 [node name="health_bar" parent="NinePatchRect" instance=ExtResource("2_mpgvf")]
 position = Vector2(165, 35)
 scale = Vector2(5, 5)
-time = 1.0
+time = 1.1
