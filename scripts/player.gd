@@ -7,8 +7,12 @@ var direction: float
 # coyote time
 var was_on_floor: bool = false
 var can_coyote_jump: bool = false
+@onready var coyote_time: Timer = $timers/coyote_timer
 
-@onready var coyote_time: Timer = $coyote_time
+#Input Buffer
+const JUMP_BUFFER_TIME:float= 0.15 #son 9 frames
+@onready var input_buffer_timer: Timer = $timers/input_buffer_timer
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var health_particle: GPUParticles2D = $GPUParticles2D
@@ -30,7 +34,8 @@ func _physics_process(delta: float) -> void:
 		flip_handler()
 		animation_handler()
 		coyote_time_handler()
-
+		handler_jump_buffer()
+		
 	move_and_slide()
 	was_on_floor = was_on_floor_this_frame
 
@@ -47,9 +52,11 @@ func apply_gravity(delta: float):
 		velocity += get_gravity() * delta
 	
 func jump_handler():
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or can_coyote_jump):
+	if (Input.is_action_just_pressed("jump") or input_buffer_timer.time_left > 0) and (is_on_floor() or can_coyote_jump):
+		print(str(input_buffer_timer.time_left > 0))
 		velocity.y = JUMP_VELOCITY
 		can_coyote_jump = false
+		input_buffer_timer.stop()
 
 func move_handler():
 	direction = Input.get_axis("left", "right")
@@ -81,3 +88,7 @@ func show_health_particle():
 	health_particle.emitting = true
 	await get_tree().create_timer(1).timeout
 	health_particle.emitting = false
+
+func handler_jump_buffer():
+	if Input.is_action_just_pressed("jump"):
+		input_buffer_timer.start(JUMP_BUFFER_TIME)

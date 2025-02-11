@@ -134,13 +134,18 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="coyote_time" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_520f7")
 texture = ExtResource("3_ekutq")
 
-[connection signal="timeout" from="coyote_time" to="." method="_on_coyote_time_timeout"]
+[node name="timers" type="Node" parent="."]
+
+[node name="input_buffer_timer" type="Timer" parent="timers"]
+one_shot = true
+
+[node name="coyote_timer" type="Timer" parent="timers"]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="timers/coyote_timer" to="." method="_on_coyote_time_timeout"]

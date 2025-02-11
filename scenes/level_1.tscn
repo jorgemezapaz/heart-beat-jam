@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bh2gr8r8b2htq" path="res://scenes/UI.tscn" id="5_rq4tr"]
 [ext_resource type="PackedScene" uid="uid://b5kw3oqyq4kls" path="res://scenes/transition.tscn" id="7_xm06x"]
 [ext_resource type="TileSet" uid="uid://c8gsye2tjabcv" path="res://assets/env_1.tres" id="8_t7jep"]
-[ext_resource type="PackedScene" uid="uid://bpkp6ho4ity80" path="res://scenes/main_menu.tscn" id="9_hykc4"]
+[ext_resource type="PackedScene" path="res://scenes/main_menu.tscn" id="9_hykc4"]
 
 [node name="level_1" type="Node2D"]
 script = ExtResource("1_ntioq")
