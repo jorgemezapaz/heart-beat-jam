@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://btx15p6l8iib7"]
+
+[ext_resource type="Script" path="res://scripts/show_letter.gd" id="1_k8mis"]
+[ext_resource type="PackedScene" uid="uid://cktr10thqodlv" path="res://scenes/letter_1.tscn" id="2_7x7rk"]
+
+[node name="show_letter" type="CanvasLayer"]
+script = ExtResource("1_k8mis")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.584314, 0.152941, 0.0156863, 0.12549)
+
+[node name="letter_1" parent="." instance=ExtResource("2_7x7rk")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = 468.0
+offset_right = -187.0
+offset_bottom = 468.0
+next_level = 2

@@ -4,7 +4,8 @@ extends Node
 signal syringe_catch_it
 signal love_letter_catch_it
 signal player_dead
-
+#letters
+signal show_letter
 #transition
 signal transition
 

@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://cktr10thqodlv"]
+
+[ext_resource type="Script" path="res://scripts/next_level_button.gd" id="1_3wst0"]
+[ext_resource type="Texture2D" uid="uid://dcd14wrfxrhfm" path="res://assets/letter_1.png" id="1_d70ra"]
+
+[node name="letter_1" type="Control"]
+z_index = 5
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3wst0")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 361.0
+offset_bottom = 402.0
+texture = ExtResource("1_d70ra")
+region_rect = Rect2(0.955643, -0.755543, 127.111, 161.333)
+patch_margin_left = 14
+patch_margin_top = 13
+patch_margin_right = 30
+patch_margin_bottom = 26
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 43.0
+offset_right = 145.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Hola Cariño,"
+
+[node name="Label2" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 81.0
+offset_right = 302.0
+offset_bottom = 156.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Como salí primero, en el camino 
+te deje algunas jeringas para tu
+viaje, te estaré esperando."
+
+[node name="Label3" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 178.0
+offset_right = 314.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "No me hagas esperar demaciado.
+Con amor BX"
+
+[node name="Label4" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 269.0
+offset_right = 300.0
+offset_bottom = 318.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "PD: Deje algunas trampas en el
+camino, ten cuidado!"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 410.0
+offset_right = 246.0
+offset_bottom = 441.0
+text = "Siguiente nivel"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
