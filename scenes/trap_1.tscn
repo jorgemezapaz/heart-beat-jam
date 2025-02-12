@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://dm5th043gcngo"]
+
+[ext_resource type="Texture2D" uid="uid://b8d6go016te22" path="res://assets/trap_1.png" id="1_ojgd1"]
+[ext_resource type="Script" path="res://scripts/trap_1.gd" id="1_omcsg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gqej2"]
+radius = 11.0
+
+[sub_resource type="Animation" id="Animation_gpo6p"]
+resource_name = "idle"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 1.5708, 2.35619, 3.14159, 3.92699, 4.71239, 5.49779, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_tsxtk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a1m6k"]
+_data = {
+"RESET": SubResource("Animation_tsxtk"),
+"idle": SubResource("Animation_gpo6p")
+}
+
+[node name="trap_1" type="Node2D"]
+z_index = 1
+position = Vector2(0, -40)
+script = ExtResource("1_omcsg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ojgd1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gqej2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a1m6k")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
