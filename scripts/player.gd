@@ -23,6 +23,7 @@ func _ready() -> void:
 	GlobalSignal.syringe_catch_it.connect(show_health_particle)
 	GlobalSignal.start_new_game.connect(new_game)
 	GlobalSignal.start_game.connect(new_game)
+	GlobalSignal.player_dead.connect(dead)
 
 func _physics_process(delta: float) -> void:
 	var was_on_floor_this_frame = is_on_floor()
@@ -53,7 +54,6 @@ func apply_gravity(delta: float):
 	
 func jump_handler():
 	if (Input.is_action_just_pressed("jump") or input_buffer_timer.time_left > 0) and (is_on_floor() or can_coyote_jump):
-		print(str(input_buffer_timer.time_left > 0))
 		velocity.y = JUMP_VELOCITY
 		can_coyote_jump = false
 		input_buffer_timer.stop()
@@ -92,3 +92,7 @@ func show_health_particle():
 func handler_jump_buffer():
 	if Input.is_action_just_pressed("jump"):
 		input_buffer_timer.start(JUMP_BUFFER_TIME)
+
+func dead():
+	controll_disabled = true
+	animation_player.play("dead")
