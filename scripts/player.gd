@@ -18,18 +18,21 @@ const JUMP_BUFFER_TIME:float= 0.15 #son 9 frames
 @onready var health_particle: GPUParticles2D = $GPUParticles2D
 
 @export var controll_disabled: bool = true
+@export var default_respawn: Node2D
+var check_point: Vector2
 
 func _ready() -> void:
 	GlobalSignal.syringe_catch_it.connect(show_health_particle)
 	GlobalSignal.start_new_game.connect(new_game)
 	GlobalSignal.start_game.connect(new_game)
 	GlobalSignal.player_dead.connect(dead)
+	GlobalSignal.pause_game.connect(pause)
 
 func _physics_process(delta: float) -> void:
 	var was_on_floor_this_frame = is_on_floor()
-	
+	apply_gravity(delta)
 	if !controll_disabled:
-		apply_gravity(delta)
+		
 		jump_handler()
 		move_handler()
 		flip_handler()
@@ -95,4 +98,21 @@ func handler_jump_buffer():
 
 func dead():
 	controll_disabled = true
-	animation_player.play("dead")
+	visible = false
+	velocity = Vector2.ZERO
+	print(check_point)
+	if check_point:
+		print("check point")
+		position = check_point
+	else:
+		position = default_respawn.global_position
+		print("default")
+		
+	await get_tree().create_timer(.5).timeout
+	animation_player.play("idle")
+	controll_disabled = false
+
+func pause():
+	controll_disabled = true
+	velocity = Vector2.ZERO
+	animation_player.play("idle")

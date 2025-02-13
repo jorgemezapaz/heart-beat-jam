@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://btx15p6l8iib7"]
+[gd_scene load_steps=4 format=3 uid="uid://btx15p6l8iib7"]
 
 [ext_resource type="Script" path="res://scripts/show_letter.gd" id="1_k8mis"]
 [ext_resource type="PackedScene" uid="uid://cktr10thqodlv" path="res://scenes/letter_1.tscn" id="2_7x7rk"]
+[ext_resource type="PackedScene" uid="uid://g3mbd524ax80" path="res://scenes/letter_2.tscn" id="3_bl7q0"]
 
 [node name="show_letter" type="CanvasLayer"]
 script = ExtResource("1_k8mis")
@@ -25,3 +26,9 @@ offset_top = 468.0
 offset_right = -187.0
 offset_bottom = 468.0
 next_level = 2
+
+[node name="letter_2" parent="." instance=ExtResource("3_bl7q0")]
+offset_left = 327.0
+offset_top = 835.0
+offset_right = 327.0
+offset_bottom = 835.0

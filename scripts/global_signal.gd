@@ -14,3 +14,5 @@ signal start_new_game
 signal start_game
 signal pause_game
 signal continue_game
+
+signal heath_beating

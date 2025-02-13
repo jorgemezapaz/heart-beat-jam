@@ -31,12 +31,14 @@ func _physics_process(delta: float) -> void:
 		if healh_timer >= time:
 			current_health -= 1
 			healh_timer = 0.0
+			GlobalSignal.heath_beating.emit(current_health)
 		
 
 func full_health():
 	current_health = MAX_HEALTH
 	healh_timer = 0.0
 	sprite_2d.frame = current_health
+	GlobalSignal.heath_beating.emit(current_health)
 
 func reset_ui():
 	full_health()
