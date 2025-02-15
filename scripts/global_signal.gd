@@ -16,3 +16,5 @@ signal pause_game
 signal continue_game
 
 signal heath_beating
+
+signal end_game

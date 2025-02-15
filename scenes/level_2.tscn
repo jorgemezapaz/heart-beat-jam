@@ -238,9 +238,8 @@ position = Vector2(96, 184)
 [node name="spike22" parent="traps" instance=ExtResource("8_k5xte")]
 position = Vector2(250, 184)
 
-[node name="game_manager" parent="." node_paths=PackedStringArray("player", "player_respawn") instance=ExtResource("10_vlh2v")]
+[node name="game_manager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_vlh2v")]
 player = NodePath("../Player")
-player_respawn = NodePath("../spot")
 
 [node name="show_letter" parent="." instance=ExtResource("11_k6npr")]
 visible = false

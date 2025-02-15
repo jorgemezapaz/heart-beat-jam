@@ -21,6 +21,9 @@ const JUMP_BUFFER_TIME:float= 0.15 #son 9 frames
 @export var default_respawn: Node2D
 var check_point: Vector2
 
+@export var sfx_walk: AudioStream
+@export var sfx_jump: AudioStream
+
 func _ready() -> void:
 	GlobalSignal.syringe_catch_it.connect(show_health_particle)
 	GlobalSignal.start_new_game.connect(new_game)
@@ -60,6 +63,8 @@ func jump_handler():
 		velocity.y = JUMP_VELOCITY
 		can_coyote_jump = false
 		input_buffer_timer.stop()
+		load_sfx(sfx_jump)
+		$sfx_player.play()
 
 func move_handler():
 	direction = Input.get_axis("left", "right")
@@ -116,3 +121,8 @@ func pause():
 	controll_disabled = true
 	velocity = Vector2.ZERO
 	animation_player.play("idle")
+	
+func load_sfx(sfx_to_load):
+	if $sfx_player.stream != sfx_to_load:
+		$sfx_player.stop()
+		$sfx_player.stream = sfx_to_load
